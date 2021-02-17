@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <h1 class="display-2 about-title">Calvin Lee</h1>
+            <div  class="lead" style="font-size: 30px; font-family: 'ABeeZee'; padding-left: 5em;">A normal guy from Boston just trying to spread the energy and passion for health and fitness!<br>
+            <br>
+            Follow me on Instagram:<br>
+            <a href="https://www.instagram.com/the_chicken_and_nice_guy/" class="customLink"><span><i class="fab fa-instagram fa-2x"></i></span>&nbsp @the_chicken_and_nice_guy</a><br><br>
+            To slide into my DMs: <br> <a href="mailto:clee2691@gmail.com" class="customLink"><i class="fas fa-envelope-open-text fa-2x"></i> &nbsp clee2691@gmail.com</a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <img src="{{ url_for('static', filename='calvin2019edit.jpg') }}">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

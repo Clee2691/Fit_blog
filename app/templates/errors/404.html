@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <h1>Sorry the page you are trying to access is not found. Are you at the right place?</h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('home') }}">HOME</a>
+    </div>
+</div>
+
+
+{% endblock %}

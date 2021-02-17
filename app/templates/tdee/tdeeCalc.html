@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Modal div that pops up-->
+<div class="modal fade" id="tdeeInstruct" tabindex="-1" role="dialog" aria-labelledby="TdeeCalcInstructions" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Instructions</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-text">
+                <p class="lead text-center">About</p>
+                <p>The TDEE calculator calculates your Total Daily Energy Expenditure. Your TDEE is a measurement of how many calories you burn per day.</p>
+                <p>By utilizing this information, you can determine how many calories you need to eat to lose, gain, or maintain weight.</p>
+                <p>This calculator uses the Mifflin St. Jeor equation. It is the most accurate BMR equation to date.</p>
+                <p class="lead text-center">Instructions</p>
+                <ol>
+                    <li>Enter your height in feet and inches.</li>
+                    <li>Enter your weight in pounds.</li>
+                    <li>Enter your age.</li>
+                    <li>Select your gender.</li>
+                    <li>Select your activity level. To see what each level corresponds to, hover over the "i" icon. For starters, you can pick sedentary for the most conservative calculation.</li>
+                    <li>Press the calculate button!</li>
+                </ol>
+                <p></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary navbar-btn" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container content-section">
+    <form action ="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+    <div class="row d-flex justify-content-center">
+        <h1 class="display-4">Enter Your Details</h1>
+        <button type="button" class="btn btn-primary navbar-btn align-self-center" data-toggle="modal" data-target="#tdeeInstruct">INSTRUCTIONS</button>
+
+    </div>
+
+    <fieldset class="form-group">
+            <div>
+                {{ form.height_feet.label(class="form-control-label") }}
+
+                {% if form.height_feet.errors %}
+                    {{ form.height_feet(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.height_feet.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+
+                {% else %}
+                    {{ form.height_feet(class="form-control") }}
+                {% endif %}
+
+            </div>
+            <div>
+                {{ form.height_inch.label(class="form-control-label") }}
+
+                {% if form.height_inch.errors %}
+                    {{ form.height_inch(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.height_inch.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.height_inch(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.weight.label(class="form-control-label") }}
+
+                {% if form.weight.errors %}
+                    {{ form.weight(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.weight.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.weight(class="form-control") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.age.label(class="form-control-label") }}
+                {% if form.age.errors %}
+                    {{ form.age(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.age.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.age(class="form-control")}}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.gender.label(class="form-control-label") }}
+                {{ form.gender(class="form-control") }}
+            </div>
+            <div>
+                {{ form.activity_level.label(class="form-control-label") }} <i class="fas fa-info-circle" data-toggle="tooltip" data-html="true" data-placement="auto" title="<div class='container text-left'><ul><li>Sedentary: Little or No Exercise (Desk Job)</li> <li>Lightly Active: Exercise (1-3 Days/Week)</li> <li> Moderately Active: Exercise (3-5 Days/Week) </li> <li> Very Active: Heavy Exercise + Sports (6-7 Days/Week) </li><li>Extremely Active: Very Heavy Exercise/Physical Job (2x/Day)</li></ul></div>"> </i>
+                {{ form.activity_level(class="form-control") }}
+            </div>
+            <div>
+                <br>
+                {{ form.submit(class="btn btn-primary btn-block btn-lg") }}
+            </div>
+    </fieldset>
+    </form>
+</div>
+{% endblock %}

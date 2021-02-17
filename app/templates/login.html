@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container content-section">
+    <div class="col-md-8">
+    <legend class="border-bottom mb-4 display-4">Sign In</legend>
+        <div class="form-group">
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.username.label(class="lead") }}
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control is-invalid") }}
+                    {% for error in form.username.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.username(class="form-control") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.password.label(class="lead") }}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    {% for error in form.password.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+            <div>
+                <br>
+                {{ form.remember_me() }} {{ form.remember_me.label(class="lead") }}
+                {{ form.submit(class="btn btn-primary navbar-btn") }}
+            </div>
+            <!-- <small class="text-muted">New user? <a href="{{ url_for('register') }}">Register</a> </small> -->
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

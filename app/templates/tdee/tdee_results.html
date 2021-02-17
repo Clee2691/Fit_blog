@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container content-section text-center">
+    <h1 class="display-4"> Results </h1>
+    <p class="lead mb-1"> As a {{ data[0] }} ft. {{ data[1] }} in., {{ data[3] }} year old {{ data[4] }} weighing {{ data[2] }} lbs.</p>
+    <p class="lead mb-1"> Your basil metabolic rate (BMR) is: <strong>{{ bmr }} calories</strong></p>
+    <p class="lead mb-1"> Your total daily energy expenditure (TDEE) is: <strong> {{ tdee }} calories</strong>
+</div>
+<div class="container content-section text-center">
+    <p class="lead mb-1"> <strong>Below are your calorie and macro recommendations.</strong></p>
+    <p class="lead mb-1"><strong>The default macro ratio is 40:35:25 Protein:Fat:Carbs.</strong></p>
+    <p>Choose your own ratio below to update your macro splits!</p>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group form-row">
+            <div class="col">
+                {{ form.protein_perc.label(class="form-control-label text-center")}}
+
+                {% if form.protein_perc.errors %}
+                    {{ form.protein_perc(class="form-control is-invalid")}}
+                        {% for error in form.protein_perc.errors %}
+                            <p style="color:red">{{ error }}</p>
+                        {% endfor %}    
+                {% else %}
+                    {{ form.protein_perc(class="form-control")}}
+                {% endif %}
+            </div>
+                
+            <div class="col">
+                {{ form.fat_perc.label(class="form-control-label text-center")}}
+
+                {% if form.fat_perc.errors %}
+                        {{ form.fat_perc(class="form-control is-invalid")}}
+                        
+                            {% for error in form.fat_perc.errors %}
+                                <p style="color:red">{{ error }}</p>
+                            {% endfor %}
+                        
+                {% else %}
+                    {{form.fat_perc(class="form-control") }}
+                {% endif %}
+            </div>
+                
+            <div class="col">
+                {{form.carb_perc.label(class="form-control-label text-center")}}
+                {% if form.carb_perc.errors %}
+                    {{ form.carb_perc(class="form-control is-invalid")}}
+                    
+                        {% for error in form.carb_perc.errors %}
+                            <p style="color:red">{{ error }}</p>
+                        {% endfor %}
+                    
+                {% else %}
+                    {{form.carb_perc(class="form-control") }}
+                {% endif %}
+            </div>
+            
+
+        </div>
+
+        <div class="form-row">
+            {{ form.submit(class="btn btn-primary btn-block btn-lg") }}
+        </div>
+            
+    </form>
+
+</div>
+
+<div class='container content-section'>
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-2 box-shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="my-0 font-weight-normal"> Cut </h2>
+            </div>
+        <div class="card-body">
+            <h4 class="card-title"> Calories: {{ cut }} calories</h4>
+            <div class="text-left mx-4">
+                <p> Protein: {{ cut_mac[1] }} grams </p>
+                <p> Fat: {{ cut_mac[2] }} grams </p>
+                <p> Carbohydrate: {{ cut_mac[0] }} grams </p>
+            </div>
+        </div>
+        </div>
+        <div class="card mb-2 box-shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="my-0 font-weight-normal"> Maintenance </h2>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title"> Calories: {{ tdee }} calories</h4>
+                <div class="text-left mx-4">
+                    <p>Protein: {{ maint_mac[1] }} grams </p>
+                    <p>Fat: {{ maint_mac[2] }} grams </p>
+                    <p>Carbohydrate: {{ maint_mac[0] }} grams</p>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 box-shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="my-0"> Bulk </h2>
+            </div>
+
+            <div class="card-body">
+            <h4 class="card-title"> Calories: {{ bulk }} calories</h4>
+                <div class="text-left mx-4">
+                    <p> Protein: {{ bulk_mac[1] }} grams </p>
+                    <p> Fat: {{ bulk_mac[2] }} grams </p>
+                    <p> Carbohydrate: {{ bulk_mac[0]}} grams </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mb-4">
+    <a href="{{ url_for('tdee_calc') }}" class="btn btn-primary btn-block btn-lg"> NEW PERSON </a>
+</div>
+
+{% endblock %}

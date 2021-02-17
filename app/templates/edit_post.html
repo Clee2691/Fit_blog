@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container content-section">
+
+    <h1 class="display-4 border-bottom">Edit Post</h1>
+        <div class="form-group">
+
+            <form action="" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.title.label(class='lead') }}
+                    {{ form.title(class="form-control") }}
+                </div>
+
+                <div>
+                    {{ form.post.label(class='lead') }}
+                    {{ form.post(class="form-control",rows='10') }}
+                </div>
+
+                <div>
+                    <br>
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
